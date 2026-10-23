@@ -1,0 +1,561 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Café da Terra | Cafeteria</title>
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --marrom: #3b2418;
+            --marrom-claro: #76533b;
+            --creme: #f8f2e9;
+            --verde: #426b3c;
+            --dourado: #d1a66b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--creme);
+            color: var(--marrom);
+        }
+
+        /* CABEÇALHO */
+        .navbar {
+            background-color: var(--marrom);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-family: Georgia, serif;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .navbar-brand i {
+            color: var(--dourado);
+        }
+
+        .navbar .nav-link {
+            color: white;
+            margin: 0 10px;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--dourado);
+        }
+
+        .btn-cafe {
+            background-color: var(--verde);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            transition: .3s;
+        }
+
+        .btn-cafe:hover {
+            background-color: #304f2b;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* BANNER PRINCIPAL */
+        .hero {
+            min-height: 510px;
+            display: flex;
+            align-items: center;
+            color: white;
+            background:
+                linear-gradient(90deg,
+                    rgba(35, 20, 12, .92),
+                    rgba(35, 20, 12, .25)),
+                url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1800&q=85")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: bold;
+        }
+
+        .hero p {
+            max-width: 540px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .hero-label {
+            color: var(--dourado);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* DIFERENCIAIS */
+        .diferenciais {
+            padding: 40px 0;
+            background-color: #fffdf9;
+        }
+
+        .diferencial {
+            text-align: center;
+            padding: 20px 12px;
+        }
+
+        .diferencial i {
+            font-size: 38px;
+            color: var(--marrom);
+        }
+
+        .diferencial h5 {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .diferencial p {
+            color: #6c625a;
+            margin-bottom: 0;
+        }
+
+        /* CARDÁPIO */
+        .cardapio {
+            padding: 70px 0;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 38px;
+            font-weight: bold;
+        }
+
+        .descricao-secao {
+            text-align: center;
+            color: #756960;
+            margin: 15px 0 40px;
+        }
+
+        .produto {
+            height: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(59, 36, 24, .09);
+            transition: .3s;
+        }
+
+        .produto:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(59, 36, 24, .15);
+        }
+
+        .produto img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .produto-conteudo {
+            padding: 20px;
+        }
+
+        .produto h5 {
+            font-weight: bold;
+        }
+
+        .produto p {
+            color: #756960;
+        }
+
+        .preco {
+            color: var(--verde);
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        /* SOBRE */
+        .sobre {
+            padding: 70px 0;
+            background-color: #eae0d2;
+        }
+
+        .sobre img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .sobre h2 {
+            font-family: Georgia, serif;
+            font-weight: bold;
+            font-size: 36px;
+        }
+
+        .sobre p {
+            line-height: 1.8;
+            color: #62554b;
+        }
+
+        /* CONTATO */
+        .contato {
+            padding: 55px 0;
+            background-color: var(--marrom);
+            color: white;
+        }
+
+        .contato h2 {
+            font-family: Georgia, serif;
+            font-weight: bold;
+        }
+
+        .contato i {
+            color: var(--dourado);
+            font-size: 23px;
+        }
+
+        /* RODAPÉ */
+        footer {
+            padding: 22px 0;
+            text-align: center;
+            color: white;
+            background-color: #26160e;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 450px;
+            }
+
+            .titulo-secao {
+                font-size: 30px;
+            }
+
+            .sobre img {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand" th:href="@{/}">
+            <i class="bi bi-cup-hot-fill"></i>
+            Café da Terra
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal"
+                aria-expanded="false"
+                aria-label="Abrir menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Início</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#cardapio">Cardápio</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#sobre">Sobre nós</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#contato">Contato</a>
+                </li>
+
+                <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                    <a class="btn-cafe" href="#cardapio">
+                        <i class="bi bi-cup-hot-fill"></i>
+                        Conheça nosso café
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<!-- INÍCIO -->
+<header class="hero" id="inicio">
+    <div class="container hero-content">
+
+        <div class="row">
+            <div class="col-lg-8">
+
+                    <span class="hero-label">
+                        O verdadeiro sabor da natureza
+                    </span>
+
+                <h1 class="mt-3">
+                    Café da Terra
+                </h1>
+
+                <p class="mt-4">
+                    Mais que café, uma experiência!
+                    Descubra sabores especiais, aromas irresistíveis
+                    e momentos preparados com carinho para você.
+                </p>
+
+                <a href="#cardapio" class="btn-cafe mt-3">
+                    <i class="bi bi-cup-hot-fill"></i>
+                    Conheça nosso cardápio
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<!-- DIFERENCIAIS -->
+<section class="diferenciais">
+    <div class="container">
+
+        <div class="row g-3">
+
+            <div class="col-6 col-lg-3 diferencial">
+                <i class="bi bi-cup-hot"></i>
+                <h5>Café de qualidade</h5>
+                <p>Grãos selecionados e sabor marcante.</p>
+            </div>
+
+            <div class="col-6 col-lg-3 diferencial">
+                <i class="bi bi-leaf"></i>
+                <h5>Ingredientes naturais</h5>
+                <p>Produtos escolhidos com cuidado.</p>
+            </div>
+
+            <div class="col-6 col-lg-3 diferencial">
+                <i class="bi bi-heart"></i>
+                <h5>Ambiente acolhedor</h5>
+                <p>Um espaço para relaxar e aproveitar.</p>
+            </div>
+
+            <div class="col-6 col-lg-3 diferencial">
+                <i class="bi bi-star"></i>
+                <h5>Experiência única</h5>
+                <p>Momentos especiais em cada visita.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CARDÁPIO -->
+<section class="cardapio" id="cardapio">
+    <div class="container">
+
+        <h2 class="titulo-secao">Nosso cardápio</h2>
+
+        <p class="descricao-secao">
+            Sabores que combinam perfeitamente com seu dia.
+        </p>
+
+        <div class="row g-4">
+
+            <!-- Café expresso -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="produto">
+
+                    <img
+                            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80"
+                            alt="Café expresso">
+
+                    <div class="produto-conteudo">
+                        <h5>Café Expresso</h5>
+                        <p>Intenso, aromático e encorpado.</p>
+                        <span class="preco">R$ 6,00</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Cappuccino -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="produto">
+
+                    <img
+                            src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80"
+                            alt="Cappuccino cremoso">
+
+                    <div class="produto-conteudo">
+                        <h5>Cappuccino</h5>
+                        <p>Café cremoso com espuma de leite.</p>
+                        <span class="preco">R$ 9,00</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Bolo -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="produto">
+
+                    <img
+                            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
+                            alt="Bolo de chocolate">
+
+                    <div class="produto-conteudo">
+                        <h5>Bolo de Chocolate</h5>
+                        <p>Uma delícia para acompanhar seu café.</p>
+                        <span class="preco">R$ 12,00</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Croissant -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="produto">
+
+                    <img
+                            src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80"
+                            alt="Croissant artesanal">
+
+                    <div class="produto-conteudo">
+                        <h5>Croissant</h5>
+                        <p>Massa folhada, leve e crocante.</p>
+                        <span class="preco">R$ 8,00</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE NÓS -->
+<section class="sobre" id="sobre">
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+                <img
+                        src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=85"
+                        alt="Preparação de café na cafeteria">
+            </div>
+
+            <div class="col-lg-6">
+
+                <h2>Uma pausa que faz bem.</h2>
+
+                <p class="mt-4">
+                    O Café da Terra é um lugar para apreciar o sabor
+                    de um bom café, compartilhar histórias e criar
+                    lembranças especiais.
+                </p>
+
+                <p>
+                    Nosso objetivo é oferecer qualidade, aconchego
+                    e um atendimento que faça você querer voltar.
+                </p>
+
+                <a href="#contato" class="btn-cafe mt-2">
+                    Venha nos conhecer
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+    <div class="container">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-6">
+                <h2>Esperamos por você!</h2>
+
+                <p class="mt-3">
+                    Venha tomar um café e aproveitar momentos especiais
+                    no Café da Terra.
+                </p>
+            </div>
+
+            <div class="col-lg-6">
+
+                <p>
+                    <i class="bi bi-clock me-2"></i>
+                    Segunda a sábado, das 8h às 18h
+                </p>
+
+                <p>
+                    <i class="bi bi-geo-alt me-2"></i>
+                    Endereço da cafeteria
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope me-2"></i>
+                    contato@cafedaterra.com.br
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>
+            &copy; 2026 Café da Terra.
+            Todos os direitos reservados.
+        </p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+```

@@ -1,0 +1,224 @@
+:root {
+            --marrom: #4b2e20;
+            --marrom-claro: #795548;
+            --bege: #f5eee4;
+            --creme: #fffaf3;
+            --verde: #526b43;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--creme);
+            color: #33251e;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        /* Navegação */
+        .navbar {
+            background-color: var(--marrom);
+        }
+
+        .navbar-brand {
+            color: #fffaf3 !important;
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+
+        .navbar-brand i {
+            color: #d9b382;
+        }
+
+        .navbar .nav-link {
+            color: #f5eee4;
+            margin-left: 12px;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-link:hover {
+            color: #d9b382;
+        }
+
+        /* Banner principal */
+        .hero {
+            min-height: 530px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg,
+                    rgba(35, 22, 15, 0.88),
+                    rgba(35, 22, 15, 0.25)),
+                url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1800&q=85")
+                center/cover no-repeat;
+            color: white;
+        }
+
+        .hero-content {
+            padding-top: 75px;
+            padding-bottom: 75px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: bold;
+            max-width: 700px;
+        }
+
+        .hero p {
+            max-width: 560px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .btn-cafe {
+            background-color: var(--verde);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .btn-cafe:hover {
+            background-color: #3d5132;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-cafe {
+            color: white;
+            border: 1px solid white;
+            padding: 12px 25px;
+            border-radius: 30px;
+        }
+
+        .btn-outline-cafe:hover {
+            background-color: white;
+            color: var(--marrom);
+        }
+
+        /* Seções */
+        .section-padding {
+            padding: 75px 0;
+        }
+
+        .section-title {
+            color: var(--marrom);
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            color: #76675d;
+        }
+
+        /* Sobre */
+        .about-image {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .about-icon {
+            font-size: 2rem;
+            color: var(--verde);
+        }
+
+        /* Cardápio */
+        .menu-section {
+            background-color: var(--bege);
+        }
+
+        .menu-card {
+            height: 100%;
+            overflow: hidden;
+            border: none;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .menu-card .card-title {
+            color: var(--marrom);
+            font-weight: bold;
+        }
+
+        .price {
+            color: var(--verde);
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        /* Diferenciais */
+        .feature-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--bege);
+            color: var(--marrom);
+            font-size: 2rem;
+        }
+
+        /* Contato */
+        .contact-section {
+            background-color: var(--marrom);
+            color: white;
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-icon {
+            color: #d9b382;
+            font-size: 1.5rem;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #2b1b13;
+            color: #f5eee4;
+            padding: 22px 0;
+        }
+
+        footer a {
+            color: #d9b382;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 480px;
+            }
+
+            .section-padding {
+                padding: 55px 0;
+            }
+
+            .about-image {
+                height: 280px;
+            }
+        }
